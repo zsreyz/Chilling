@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero to Startup Founder</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#080810;color:#E4E4F0;font-family:'Segoe UI',sans-serif;max-width:480px;margin:0 auto}
+.hero{background:linear-gradient(160deg,#0D0D1F,#0A1628);padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,77,109,0.12);border:1px solid rgba(255,77,109,0.3);border-radius:20px;padding:4px 12px;margin-bottom:12px}
+.dot{width:6px;height:6px;border-radius:50%;background:#FF4D6D;display:inline-block}
+.badge-text{font-size:11px;color:#FF4D6D;font-weight:700;letter-spacing:1.5px}
+h1{font-size:26px;font-weight:900;line-height:1.15;margin-bottom:8px}
+.gradient-text{background:linear-gradient(90deg,#FF4D6D,#FF9F1C);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{font-size:13px;color:#7A7A90;line-height:1.6;margin-bottom:16px}
+.accent{color:#FF9F1C}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.tag{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:4px 10px;font-size:11px;color:#A0A0B8;font-weight:600}
+.progress-label{display:flex;justify-content:space-between;margin-bottom:6px}
+.progress-label span{font-size:11px;color:#666}
+.progress-label .pct{color:#FF4D6D;font-weight:700}
+.bar{height:4px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden}
+.bar-fill{height:100%;width:0%;background:linear-gradient(90deg,#FF4D6D,#FF9F1C);border-radius:99px;transition:width 0.4s}
+nav{display:flex;background:#0C0C18;border-bottom:1px solid rgba(255,255,255,0.05);position:sticky;top:0;z-index:100}
+nav button{flex:1;padding:11px 4px;background:none;border:none;border-bottom:2px solid transparent;color:#555;font-size:11.5px;font-weight:700;cursor:pointer;transition:all 0.2s}
+nav button.active{border-bottom:2px solid #FF4D6D;color:#FF4D6D}
+.content{padding:16px;display:none}
+.content.active{display:block}
+.phase{margin-bottom:10px}
+.phase-btn{width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:16px;cursor:pointer;text-align:left;transition:all 0.3s}
+.phase-btn.open{background:rgba(255,77,109,0.07);border-color:rgba(255,77,109,0.25)}
+.phase-header{display:flex;justify-content:space-between;align-items:flex-start}
+.phase-icon{font-size:24px;margin-right:10px}
+.phase-num{font-size:10px;font-weight:800;letter-spacing:2px;color:#FF4D6D}
+.phase-title{font-size:15px;font-weight:800;color:#EEEEFF;margin-top:1px}
+.phase-sub{font-size:12px;color:#666;margin-top:4px;margin-left:34px}
+.arrow{font-size:16px;color:#FF4D6D}
+.phase-body{display:none;margin-top:8px;padding-left:4px}
+.phase-body.open{display:block}
+.why-box{background:rgba(255,77,109,0.07);border:1px solid rgba(255,77,109,0.2);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.why-label{font-size:10px;color:#FF4D6D;font-weight:800;letter-spacing:1px;margin-bottom:4px}
+.why-text{font-size:12px;color:#A0A0B5;line-height:1.6}
+.milestone-box{background:rgba(97,218,251,0.06);border:1px solid rgba(97,218,251,0.2);border-radius:10px;padding:10px 14px;margin-bottom:12px;display:flex;gap:10px;align-items:flex-start}
+.milestone-label{font-size:10px;color:#61DAFB;font-weight:700;margin-bottom:3px}
+.milestone-text{font-size:12px;color:#80CCE8}
+.topic{margin-bottom:8px}
+.topic-btn{width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:10px 12px;cursor:pointer;text-align:left;transition:all 0.2s}
+.topic-btn.open{background:rgba(255,77,109,0.08);border-color:rgba(255,77,109,0.3)}
+.topic-header{display:flex;justify-content:space-between;align-items:center}
+.topic-icon{font-size:18px;margin-right:8px}
+.topic-name{font-size:13px;font-weight:700;color:#D8D8EE}
+.topic-body{display:none;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:16px;margin-top:4px}
+.topic-body.open{display:block}
+.section-label{font-size:10px;font-weight:800;letter-spacing:1px;margin-bottom:6px}
+.simple-text{font-size:13px;color:#A8A8C0;line-height:1.7;margin-bottom:12px}
+.flow-box{background:rgba(78,205,196,0.07);border:1px solid rgba(78,205,196,0.2);border-radius:8px;padding:10px 12px;margin-bottom:14px;font-family:monospace}
+.flow-text{font-size:12px;color:#70CACA;line-height:1.6}
+.learn-item{display:flex;gap:8px;margin-bottom:5px;align-items:flex-start}
+.learn-num{background:#FF4D6D;color:white;border-radius:50%;width:17px;height:17px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0;margin-top:2px}
+.learn-text{font-size:12px;color:#B8B8D0;line-height:1.6}
+.link-item{display:flex;align-items:center;gap:10px;background:rgba(195,166,255,0.07);border:1px solid rgba(195,166,255,0.2);border-radius:8px;padding:9px 12px;margin-bottom:6px;text-decoration:none}
+.link-text{font-size:12px;color:#C3A6FF;flex:1;line-height:1.4}
+.footer{padding:20px;text-align:center;border-top:1px solid rgba(255,255,255,0.04)}
+.footer p{font-size:12px;color:#333}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="badge"><span class="dot"></span><span class="badge-text">PERSONALIZED FOR YOU</span></div>
+  <h1>Zero to<br><span class="gradient-text">Startup Founder</span><br>in 12 Months 🔥</h1>
+  <p class="sub">Complete beginner → Full-Stack Developer → Startup CEO<br><span class="accent">3–4 hrs/day · Mobile only · 100% Free</span></p>
+  <div class="tags">
+    <span class="tag">🆕 Complete Beginner</span>
+    <span class="tag">🚀 Startup Goal</span>
+    <span class="tag">⏱ 3-4h/day</span>
+    <span class="tag">📱 Mobile Only</span>
+    <span class="tag">🆓 All Free</span>
+  </div>
+</div>
+<nav>
+  <button class="active" onclick="showTab('roadmap',this)">🗺 Roadmap</button>
+  <button onclick="showTab('schedule',this)">📅 Schedule</button>
+  <button onclick="showTab('mindset',this)">🧠 Mindset</button>
+</nav>
+<div id="roadmap" class="content active">
+<p style="font-size:12px;color:#555;margin-bottom:14px">Tap each phase to expand. Tap topics to see what to learn + free links.</p>
+
+<div class="phase">
+<button class="phase-btn" onclick="togglePhase('p0',this)">
+<div class="phase-header"><div><span class="phase-icon">🧠</span><span class="phase-num">WEEK 1–2</span><div class="phase-title">Understand the Tech World</div></div><span class="arrow">▼</span></div>
+<div class="phase-sub">What is everything you've heard of?</div>
+</button>
+<div id="p0" class="phase-body">
+<div class="why-box"><div class="why-label">WHY THIS MATTERS FOR YOUR STARTUP</div><div class="why-text">Every founder needs to speak tech. This week you learn the language so you can work with developers, pitch investors, and build confidently.</div></div>
+<div class="milestone-box"><span style="font-size:18px">🏆</span><div><div class="milestone-label">PHASE MILESTONE</div><div class="milestone-text">You can explain what a website, app, API, and database are — to anyone.</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t00',this)"><div class="topic-header"><div><span class="topic-icon">🌐</span><span class="topic-name">How the Internet Works</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t00" class="topic-body">
+<div class="section-label" style="color:#FF9F1C">💡 WHAT IS IT?</div><div class="simple-text">The internet is billions of computers talking to each other. When you open YouTube, your phone asks YouTube's computer (server) to send you videos. It does. That's it.</div>
+<div class="flow-box"><div class="section-label" style="color:#4ECDC4">⚙️ HOW IT WORKS</div><div class="flow-text">Your Phone → WiFi → Internet → YouTube Server → Back to You</div></div>
+<div class="section-label" style="color:#A8E6CF">📋 WHAT TO LEARN:</div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">What is a client and a server</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">What happens when you open a website</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">What is HTTP vs HTTPS</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">What is a domain name (like youtube.com)</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">What is web hosting</span></div>
+<div class="learn-item"><span class="learn-num">6</span><span class="learn-text">What is DNS (converts domain to IP address)</span></div>
+<div style="margin-top:10px"><div class="section-label" style="color:#C3A6FF">🔗 FREE RESOURCES:</div>
+<a href="https://www.youtube.com/watch?v=7_LPdttKXPc" target="_blank" class="link-item"><span>▶</span><span class="link-text">How the Internet Works in 5 Minutes (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://edu.gcfglobal.org/en/internetbasics/" target="_blank" class="link-item"><span>▶</span><span class="link-text">GCF Internet Basics (Free, Mobile Friendly)</span><span style="color:#444">↗</span></a>
+</div></div></div>
+
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t01',this)"><div class="topic-header"><div><span class="topic-icon">🗺️</span><span class="topic-name">Web Dev, App Dev, API, UI/UX Explained</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t01" class="topic-body">
+<div class="section-label" style="color:#FF9F1C">💡 WHAT IS IT?</div><div class="simple-text">Web Dev = building websites. App Dev = building phone apps. API = two apps talking. UI = how it looks. UX = how easy it is to use.</div>
+<div class="flow-box"><div class="flow-text">Website → talks to Backend → via API → Backend reads Database</div></div>
+<div class="section-label" style="color:#A8E6CF">📋 WHAT TO LEARN:</div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">Frontend = what users SEE</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">Backend = what users DON'T see</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Full-Stack = both frontend + backend</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">API = two programs talking to each other</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">Database = permanent data storage</span></div>
+<div class="learn-item"><span class="learn-num">6</span><span class="learn-text">UI = User Interface (how it looks)</span></div>
+<div class="learn-item"><span class="learn-num">7</span><span class="learn-text">UX = User Experience (how it feels)</span></div>
+<div style="margin-top:10px"><div class="section-label" style="color:#C3A6FF">🔗 FREE RESOURCES:</div>
+<a href="https://www.youtube.com/watch?v=ysEN5RaKOlA" target="_blank" class="link-item"><span>▶</span><span class="link-text">Web Dev Explained (Fireship, YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://www.youtube.com/watch?v=s7wmiS2mSXY" target="_blank" class="link-item"><span>▶</span><span class="link-text">What is an API? (Plain English, YouTube)</span><span style="color:#444">↗</span></a>
+</div></div></div>
+
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t02',this)"><div class="topic-header"><div><span class="topic-icon">📱</span><span class="topic-name">Set Up Mobile Coding Environment</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t02" class="topic-body">
+<div class="section-label" style="color:#FF9F1C">💡 WHAT IS IT?</div><div class="simple-text">You need 3 things: a place to WRITE code, a place to RUN code, and a place to SAVE code. All free, all on your phone.</div>
+<div class="flow-box"><div class="flow-text">Write in Acode → Run in Replit (browser) → Save on GitHub</div></div>
+<div class="section-label" style="color:#A8E6CF">📋 WHAT TO DO:</div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">Install Acode app (Android code editor)</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">Open replit.com in Chrome — your coding home</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Create free Replit account</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">Create free GitHub account</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">Install Mimo app for daily mobile learning</span></div>
+<div class="learn-item"><span class="learn-num">6</span><span class="learn-text">Bookmark: freecodecamp.org</span></div>
+<div style="margin-top:10px"><div class="section-label" style="color:#C3A6FF">🔗 FREE RESOURCES:</div>
+<a href="https://replit.com" target="_blank" class="link-item"><span>▶</span><span class="link-text">Replit — Code on Phone (Browser)</span><span style="color:#444">↗</span></a>
+<a href="https://getmimo.com" target="_blank" class="link-item"><span>▶</span><span class="link-text">Mimo App — Learn Coding on Mobile</span><span style="color:#444">↗</span></a>
+<a href="https://github.com" target="_blank" class="link-item"><span>▶</span><span class="link-text">GitHub — Save Your Code Free</span><span style="color:#444">↗</span></a>
+</div></div></div>
+</div></div>
+
+<div class="phase">
+<button class="phase-btn" onclick="togglePhase('p1',this)">
+<div class="phase-header"><div><span class="phase-icon">🎨</span><span class="phase-num">MONTH 1–2</span><div class="phase-title">HTML + CSS</div></div><span class="arrow">▼</span></div>
+<div class="phase-sub">Build the face of your startup</div>
+</button>
+<div id="p1" class="phase-body">
+<div class="why-box"><div class="why-label">WHY THIS MATTERS FOR YOUR STARTUP</div><div class="why-text">After Month 2, YOU can build your own startup landing page — beautiful, live, shareable with investors and users.</div></div>
+<div class="milestone-box"><span style="font-size:18px">🏆</span><div><div class="milestone-label">PHASE MILESTONE</div><div class="milestone-text">Live startup landing page hosted free on the internet with a real link.</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t10',this)"><div class="topic-header"><div><span class="topic-icon">🦴</span><span class="topic-name">HTML — The Skeleton</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t10" class="topic-body">
+<div class="section-label" style="color:#FF9F1C">💡 WHAT IS IT?</div><div class="simple-text">HTML defines the STRUCTURE of a webpage. It's not a programming language — it just says 'here's a heading, here's a paragraph, here's a button'. Like the skeleton of a body.</div>
+<div class="flow-box"><div class="flow-text">You write &lt;h1&gt;Hello&lt;/h1&gt; → Browser displays big bold "Hello"</div></div>
+<div class="section-label" style="color:#A8E6CF">📋 WHAT TO LEARN:</div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">HTML tags: opening and closing</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">html, head, body — skeleton of every page</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Headings: h1 to h6</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">Paragraph: p tag</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">Links: a href=</span></div>
+<div class="learn-item"><span class="learn-num">6</span><span class="learn-text">Images: img src=</span></div>
+<div class="learn-item"><span class="learn-num">7</span><span class="learn-text">Lists: ul, ol, li</span></div>
+<div class="learn-item"><span class="learn-num">8</span><span class="learn-text">Forms: form, input, button, textarea</span></div>
+<div class="learn-item"><span class="learn-num">9</span><span class="learn-text">Divs and Spans (containers)</span></div>
+<div class="learn-item"><span class="learn-num">10</span><span class="learn-text">Semantic HTML: header, nav, main, footer</span></div>
+<div style="margin-top:10px"><div class="section-label" style="color:#C3A6FF">🔗 FREE RESOURCES:</div>
+<a href="https://www.youtube.com/watch?v=pQN-pnXPaVg" target="_blank" class="link-item"><span>▶</span><span class="link-text">HTML Full Course — freeCodeCamp (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://www.w3schools.com/html/" target="_blank" class="link-item"><span>▶</span><span class="link-text">W3Schools HTML Tutorial (Free)</span><span style="color:#444">↗</span></a>
+<a href="https://www.freecodecamp.org/learn/responsive-web-design/" target="_blank" class="link-item"><span>▶</span><span class="link-text">freeCodeCamp HTML Curriculum (Free)</span><span style="color:#444">↗</span></a>
+</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t11',this)"><div class="topic-header"><div><span class="topic-icon">✨</span><span class="topic-name">CSS — The Design</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t11" class="topic-body">
+<div class="section-label" style="color:#FF9F1C">💡 WHAT IS IT?</div><div class="simple-text">CSS makes HTML beautiful. Colors, fonts, spacing, layouts, animations. Without CSS every site looks like a plain text document.</div>
+<div class="flow-box"><div class="flow-text">h1 { color: red; font-size: 48px; } → Heading turns red and huge</div></div>
+<div class="section-label" style="color:#A8E6CF">📋 WHAT TO LEARN:</div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">CSS syntax: selector { property: value; }</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">Colors: hex, rgb, hsl</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Fonts and typography</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">Box Model: margin, padding, border</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">Flexbox layout (VERY important)</span></div>
+<div class="learn-item"><span class="learn-num">6</span><span class="learn-text">CSS Grid layout</span></div>
+<div class="learn-item"><span class="learn-num">7</span><span class="learn-text">Media queries (mobile responsive)</span></div>
+<div class="learn-item"><span class="learn-num">8</span><span class="learn-text">CSS animations and transitions</span></div>
+<div style="margin-top:10px"><div class="section-label" style="color:#C3A6FF">🔗 FREE RESOURCES:</div>
+<a href="https://www.youtube.com/watch?v=1Rs2ND1ryYc" target="_blank" class="link-item"><span>▶</span><span class="link-text">CSS Full Course — freeCodeCamp (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://flexboxfroggy.com" target="_blank" class="link-item"><span>▶</span><span class="link-text">Flexbox Froggy — Learn Flexbox by Playing</span><span style="color:#444">↗</span></a>
+<a href="https://www.youtube.com/@KevinPowell" target="_blank" class="link-item"><span>▶</span><span class="link-text">Kevin Powell — Best CSS YouTube Channel</span><span style="color:#444">↗</span></a>
+</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t12',this)"><div class="topic-header"><div><span class="topic-icon">🌍</span><span class="topic-name">Deploy Your Website Free</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t12" class="topic-body">
+<div class="section-label" style="color:#FF9F1C">💡 WHAT IS IT?</div><div class="simple-text">Deployment = putting your website LIVE on the internet so anyone with a link can see it. Free platforms do this in seconds.</div>
+<div class="flow-box"><div class="flow-text">Code → Push to GitHub → Connect Netlify → Get live link → Share</div></div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">What is deployment</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">GitHub Pages (free hosting)</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Netlify (drag and drop deploy)</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">How to update your live site</span></div>
+<div style="margin-top:10px"><div class="section-label" style="color:#C3A6FF">🔗 FREE RESOURCES:</div>
+<a href="https://www.netlify.com" target="_blank" class="link-item"><span>▶</span><span class="link-text">Netlify — Free Website Hosting</span><span style="color:#444">↗</span></a>
+<a href="https://pages.github.com" target="_blank" class="link-item"><span>▶</span><span class="link-text">GitHub Pages — Free Hosting</span><span style="color:#444">↗</span></a>
+</div></div></div>
+</div></div>
+
+<div class="phase">
+<button class="phase-btn" onclick="togglePhase('p2',this)">
+<div class="phase-header"><div><span class="phase-icon">⚡</span><span class="phase-num">MONTH 2–4</span><div class="phase-title">JavaScript</div></div><span class="arrow">▼</span></div>
+<div class="phase-sub">Make everything actually work</div>
+</button>
+<div id="p2" class="phase-body">
+<div class="why-box"><div class="why-label">WHY THIS MATTERS FOR YOUR STARTUP</div><div class="why-text">JavaScript turns your static page into a real product. Buttons, forms, real-time updates — JS is what makes your startup idea actually functional.</div></div>
+<div class="milestone-box"><span style="font-size:18px">🏆</span><div><div class="milestone-label">PHASE MILESTONE</div><div class="milestone-text">An interactive web app users can actually USE — a tool, form, or prototype related to your startup idea.</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t20',this)"><div class="topic-header"><div><span class="topic-icon">📦</span><span class="topic-name">JS Basics — Variables, Types, Operators</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t20" class="topic-body">
+<div class="simple-text">JavaScript is THE programming language of the web. It runs in the browser and makes websites interactive. Click a button → something happens = JavaScript.</div>
+<div class="flow-box"><div class="flow-text">User clicks button → JS function runs → Page changes without reloading</div></div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">Variables: let, const (avoid var)</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">Data types: string, number, boolean, null, undefined</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Operators: +, -, *, /, ===, !==, &&, ||</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">Template literals: `Hello ${name}`</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">console.log() — your debugging best friend</span></div>
+<div style="margin-top:10px">
+<a href="https://www.youtube.com/watch?v=jS4aFq5-91M" target="_blank" class="link-item"><span>▶</span><span class="link-text">JavaScript Full Course — freeCodeCamp (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://javascript.info" target="_blank" class="link-item"><span>▶</span><span class="link-text">JavaScript.info — Best Free JS Book</span><span style="color:#444">↗</span></a>
+</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t21',this)"><div class="topic-header"><div><span class="topic-icon">🔀</span><span class="topic-name">Functions, Loops, Conditions</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t21" class="topic-body">
+<div class="simple-text">Control flow = making decisions in code. Functions = reusable blocks of code. These are the building blocks of every feature in your startup.</div>
+<div class="flow-box"><div class="flow-text">if (loggedIn) { showDashboard() } else { showLogin() }</div></div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">if / else if / else</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">for loop, while loop</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Functions: function name() {}</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">Arrow functions: const name = () => {}</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">Return values</span></div>
+<div class="learn-item"><span class="learn-num">6</span><span class="learn-text">Callback functions</span></div>
+<div style="margin-top:10px">
+<a href="https://www.youtube.com/watch?v=N8ap4k_1QEQ" target="_blank" class="link-item"><span>▶</span><span class="link-text">JS Functions Explained (Web Dev Simplified)</span><span style="color:#444">↗</span></a>
+</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t22',this)"><div class="topic-header"><div><span class="topic-icon">🕹️</span><span class="topic-name">DOM — Control the Page</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t22" class="topic-body">
+<div class="simple-text">DOM = JavaScript's way of seeing and controlling your HTML page. Change text, colors, show/hide elements — all without reloading.</div>
+<div class="flow-box"><div class="flow-text">User clicks Dark Mode → JS changes body background to black instantly</div></div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">querySelector, getElementById</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">innerHTML, textContent</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">classList.add, remove, toggle</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">addEventListener('click', function)</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">createElement and appendChild</span></div>
+<div class="learn-item"><span class="learn-num">6</span><span class="learn-text">e.preventDefault() for forms</span></div>
+<div style="margin-top:10px">
+<a href="https://www.youtube.com/watch?v=0ik6X4DJKCc" target="_blank" class="link-item"><span>▶</span><span class="link-text">DOM Manipulation Crash Course (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://javascript30.com" target="_blank" class="link-item"><span>▶</span><span class="link-text">JavaScript30 — 30 Free Real Projects</span><span style="color:#444">↗</span></a>
+</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t23',this)"><div class="topic-header"><div><span class="topic-icon">🌊</span><span class="topic-name">Async JS — Fetch Data from Internet</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t23" class="topic-body">
+<div class="simple-text">Async = things that take time. Fetch lets you call any API and get real data back. This is how your startup connects to any service on the internet.</div>
+<div class="flow-box"><div class="flow-text">fetch(url) → .then(response) → .then(data) → use data in your app</div></div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">Promises: .then() .catch()</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">async / await (modern way)</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">fetch() — calling APIs</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">Reading JSON response</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">try / catch for errors</span></div>
+<div style="margin-top:10px">
+<a href="https://www.youtube.com/watch?v=PoRJizFvM7s" target="_blank" class="link-item"><span>▶</span><span class="link-text">Async JS Crash Course (Traversy Media)</span><span style="color:#444">↗</span></a>
+<a href="https://github.com/public-apis/public-apis" target="_blank" class="link-item"><span>▶</span><span class="link-text">Free Public APIs to Practice With</span><span style="color:#444">↗</span></a>
+</div></div></div>
+</div></div>
+
+<div class="phase">
+<button class="phase-btn" onclick="togglePhase('p3',this)">
+<div class="phase-header"><div><span class="phase-icon">⚛️</span><span class="phase-num">MONTH 4–6</span><div class="phase-title">React + Tailwind CSS</div></div><span class="arrow">▼</span></div>
+<div class="phase-sub">Build startup-grade web apps</div>
+</button>
+<div id="p3" class="phase-body">
+<div class="why-box"><div class="why-label">WHY THIS MATTERS FOR YOUR STARTUP</div><div class="why-text">React is how modern startups build. Airbnb, Notion, Twitter — all React. This is where your MVP starts looking like a real product investors can see.</div></div>
+<div class="milestone-box"><span style="font-size:18px">🏆</span><div><div class="milestone-label">PHASE MILESTONE</div><div class="milestone-text">Multi-page web app MVP of your startup, deployed live on Vercel.</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t30',this)"><div class="topic-header"><div><span class="topic-icon">🧩</span><span class="topic-name">React Fundamentals</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t30" class="topic-body">
+<div class="simple-text">React lets you build reusable components — like Lego bricks. Your Navbar is a component. Your ProductCard is a component. Combine them to build full apps.</div>
+<div class="flow-box"><div class="flow-text">Component = function returning JSX. State changes → React auto-updates UI</div></div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">What is JSX (HTML inside JavaScript)</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">Function components</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Props (passing data to components)</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">useState hook (storing data)</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">useEffect hook (running code after render)</span></div>
+<div class="learn-item"><span class="learn-num">6</span><span class="learn-text">Conditional rendering</span></div>
+<div class="learn-item"><span class="learn-num">7</span><span class="learn-text">Rendering lists with .map()</span></div>
+<div class="learn-item"><span class="learn-num">8</span><span class="learn-text">Event handling in React</span></div>
+<div class="learn-item"><span class="learn-num">9</span><span class="learn-text">React Router (multiple pages)</span></div>
+<div style="margin-top:10px">
+<a href="https://www.youtube.com/watch?v=bMknfKXIFA8" target="_blank" class="link-item"><span>▶</span><span class="link-text">React Full Course — freeCodeCamp (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://react.dev/learn" target="_blank" class="link-item"><span>▶</span><span class="link-text">React Official Docs — Learn Section (Free)</span><span style="color:#444">↗</span></a>
+<a href="https://scrimba.com/learn/learnreact" target="_blank" class="link-item"><span>▶</span><span class="link-text">Scrimba React Course (Free + Interactive)</span><span style="color:#444">↗</span></a>
+</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t31',this)"><div class="topic-header"><div><span class="topic-icon">🎨</span><span class="topic-name">Tailwind CSS — Build Beautiful UIs Fast</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t31" class="topic-body">
+<div class="simple-text">Tailwind gives you pre-made CSS classes. Style directly in HTML without writing separate CSS files. Build beautiful UIs 10x faster.</div>
+<div class="flow-box"><div class="flow-text">className="bg-blue-600 text-white rounded-lg p-4" → Instantly styled</div></div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">Color system: bg-blue-500, text-red-400</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">Spacing: p-4, m-4, px-6, py-2</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Flexbox: flex, justify-center, items-center</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">Responsive: sm:, md:, lg: prefixes</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">Hover states: hover:bg-blue-700</span></div>
+<div style="margin-top:10px">
+<a href="https://www.youtube.com/watch?v=ft30zcMlFa8" target="_blank" class="link-item"><span>▶</span><span class="link-text">Tailwind Full Course — freeCodeCamp (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://tailwindcss.com/docs" target="_blank" class="link-item"><span>▶</span><span class="link-text">Tailwind Docs (Free)</span><span style="color:#444">↗</span></a>
+</div></div></div>
+</div></div>
+
+<div class="phase">
+<button class="phase-btn" onclick="togglePhase('p4',this)">
+<div class="phase-header"><div><span class="phase-icon">⚙️</span><span class="phase-num">MONTH 5–7</span><div class="phase-title">Backend + Database + Auth</div></div><span class="arrow">▼</span></div>
+<div class="phase-sub">The engine that powers your startup</div>
+</button>
+<div id="p4" class="phase-body">
+<div class="why-box"><div class="why-label">WHY THIS MATTERS FOR YOUR STARTUP</div><div class="why-text">User accounts, data storage, payments — none of that works without a backend. This turns your demo into a real product people sign up for.</div></div>
+<div class="milestone-box"><span style="font-size:18px">🏆</span><div><div class="milestone-label">PHASE MILESTONE</div><div class="milestone-text">Working API with user signup, login, and database. Connected to your React frontend.</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t40',this)"><div class="topic-header"><div><span class="topic-icon">🟢</span><span class="topic-name">Node.js + Express — Your Server</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t40" class="topic-body">
+<div class="simple-text">Node.js lets JavaScript run on a server. Express makes building APIs easy. This is your startup's backend — receives requests, does logic, sends back data.</div>
+<div class="flow-box"><div class="flow-text">App calls your server → Express receives it → Does logic → Returns JSON data</div></div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">What is Node.js (JS outside browser)</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">npm — install packages (like App Store for code)</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Express routes: GET, POST, PUT, DELETE</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">req.body, req.params, req.query</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">res.json() — sending data back</span></div>
+<div class="learn-item"><span class="learn-num">6</span><span class="learn-text">Middleware concept</span></div>
+<div class="learn-item"><span class="learn-num">7</span><span class="learn-text">Environment variables (.env file)</span></div>
+<div style="margin-top:10px">
+<a href="https://www.youtube.com/watch?v=Oe421EPjeBE" target="_blank" class="link-item"><span>▶</span><span class="link-text">Node.js Full Course — freeCodeCamp (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://www.youtube.com/watch?v=SccSCuHhOw0" target="_blank" class="link-item"><span>▶</span><span class="link-text">Express JS Crash Course (Traversy Media)</span><span style="color:#444">↗</span></a>
+<a href="https://hoppscotch.io" target="_blank" class="link-item"><span>▶</span><span class="link-text">Hoppscotch — Free API Tester (Browser)</span><span style="color:#444">↗</span></a>
+</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t41',this)"><div class="topic-header"><div><span class="topic-icon">🍃</span><span class="topic-name">MongoDB — Your Database</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t41" class="topic-body">
+<div class="simple-text">MongoDB stores data as JSON documents. Flexible, beginner-friendly, free cloud version. This is where all your users, posts, and startup data lives permanently.</div>
+<div class="flow-box"><div class="flow-text">User signs up → Express saves to MongoDB → Data lives forever → User logs in next day → Data retrieved</div></div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">SQL vs NoSQL (MongoDB is NoSQL)</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">MongoDB Atlas — free cloud database</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Mongoose — connects Node to MongoDB</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">Schema and Model</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">CRUD: Create, Read, Update, Delete</span></div>
+<div style="margin-top:10px">
+<a href="https://www.youtube.com/watch?v=c2M-rlkkT5o" target="_blank" class="link-item"><span>▶</span><span class="link-text">MongoDB Full Course — freeCodeCamp (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://www.mongodb.com/atlas/database" target="_blank" class="link-item"><span>▶</span><span class="link-text">MongoDB Atlas — Free Cloud Database</span><span style="color:#444">↗</span></a>
+</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t42',this)"><div class="topic-header"><div><span class="topic-icon">🔥</span><span class="topic-name">Firebase — Instant Backend (Faster Path)</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t42" class="topic-body">
+<div class="simple-text">Firebase = Google's ready-made backend. Auth, database, file storage — all free, all instant. Many startups launch on Firebase first to move fast.</div>
+<div class="flow-box"><div class="flow-text">Connect Firebase SDK → Use built-in functions → No server to build</div></div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">Firebase Authentication (Google login, email/pass)</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">Firestore Database (real-time)</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Firebase Storage (images, files)</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">Firebase with React</span></div>
+<div style="margin-top:10px">
+<a href="https://www.youtube.com/watch?v=9zdvmgGsww0" target="_blank" class="link-item"><span>▶</span><span class="link-text">Firebase Full Course — freeCodeCamp (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://firebase.google.com/docs" target="_blank" class="link-item"><span>▶</span><span class="link-text">Firebase Official Docs (Free)</span><span style="color:#444">↗</span></a>
+</div></div></div>
+</div></div>
+
+<div class="phase">
+<button class="phase-btn" onclick="togglePhase('p5',this)">
+<div class="phase-header"><div><span class="phase-icon">🎨</span><span class="phase-num">MONTH 6–8</span><div class="phase-title">UI/UX Design (Figma)</div></div><span class="arrow">▼</span></div>
+<div class="phase-sub">Design products users love</div>
+</button>
+<div id="p5" class="phase-body">
+<div class="why-box"><div class="why-label">WHY THIS MATTERS FOR YOUR STARTUP</div><div class="why-text">Users judge your startup in 3 seconds. So do investors. Great design is your competitive advantage — and it's learnable.</div></div>
+<div class="milestone-box"><span style="font-size:18px">🏆</span><div><div class="milestone-label">PHASE MILESTONE</div><div class="milestone-text">Full Figma design of your startup's main screens with clickable prototype to show investors.</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t50',this)"><div class="topic-header"><div><span class="topic-icon">📐</span><span class="topic-name">Design Principles Every Founder Needs</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t50" class="topic-body">
+<div class="simple-text">You don't need to be an artist. These 8 principles instantly make any design look professional.</div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">Visual Hierarchy — most important = biggest + highest contrast</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">White space — more empty space = more premium</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Color theory — one primary + one accent + neutrals</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">Typography — max 2 fonts, size hierarchy matters</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">Contrast — text must be readable always</span></div>
+<div class="learn-item"><span class="learn-num">6</span><span class="learn-text">Consistency — same button style everywhere</span></div>
+<div class="learn-item"><span class="learn-num">7</span><span class="learn-text">8px grid system — everything in multiples of 8</span></div>
+<div class="learn-item"><span class="learn-num">8</span><span class="learn-text">Mobile-first — design phone screen first</span></div>
+<div style="margin-top:10px">
+<a href="https://www.coursera.org/professional-certificates/google-ux-design" target="_blank" class="link-item"><span>▶</span><span class="link-text">Google UX Design Certificate (Audit Free)</span><span style="color:#444">↗</span></a>
+</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t51',this)"><div class="topic-header"><div><span class="topic-icon">✏️</span><span class="topic-name">Figma — The Design Tool</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t51" class="topic-body">
+<div class="simple-text">Figma is free, runs in browser, and is used by every major design team. Design your app screens here BEFORE coding them.</div>
+<div class="flow-box"><div class="flow-text">Sketch on paper → Wireframe in Figma → High-fidelity design → Prototype → Code it</div></div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">Figma interface and tools</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">Frames (artboards for each screen)</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Components (reusable design pieces)</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">Auto Layout (like Flexbox for design)</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">Prototyping — connecting screens</span></div>
+<div class="learn-item"><span class="learn-num">6</span><span class="learn-text">Sharing your prototype link</span></div>
+<div style="margin-top:10px">
+<a href="https://www.youtube.com/watch?v=jwCmIBJ8Jtc" target="_blank" class="link-item"><span>▶</span><span class="link-text">Figma Full Course — freeCodeCamp (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://www.figma.com" target="_blank" class="link-item"><span>▶</span><span class="link-text">Figma — Free to Use</span><span style="color:#444">↗</span></a>
+<a href="https://www.figma.com/community" target="_blank" class="link-item"><span>▶</span><span class="link-text">Figma Community — Free UI Kits</span><span style="color:#444">↗</span></a>
+</div></div></div>
+</div></div>
+
+<div class="phase">
+<button class="phase-btn" onclick="togglePhase('p6',this)">
+<div class="phase-header"><div><span class="phase-icon">📱</span><span class="phase-num">MONTH 8–10</span><div class="phase-title">Mobile App (React Native)</div></div><span class="arrow">▼</span></div>
+<div class="phase-sub">Put your startup in users' pockets</div>
+</button>
+<div id="p6" class="phase-body">
+<div class="why-box"><div class="why-label">WHY THIS MATTERS FOR YOUR STARTUP</div><div class="why-text">Most users are on mobile. React Native reuses 90% of your React knowledge. Build once, ship to iOS + Android.</div></div>
+<div class="milestone-box"><span style="font-size:18px">🏆</span><div><div class="milestone-label">PHASE MILESTONE</div><div class="milestone-text">Working mobile app on your own phone via Expo Go. Ready to submit to app stores.</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t60',this)"><div class="topic-header"><div><span class="topic-icon">⚛️</span><span class="topic-name">React Native + Expo</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t60" class="topic-body">
+<div class="simple-text">React Native uses your React skills to build REAL mobile apps. Expo makes it easy — no Mac needed for iOS. Code and preview instantly on your phone with Expo Go.</div>
+<div class="flow-box"><div class="flow-text">Write React code → Expo bundles it → Open Expo Go → See live on your phone</div></div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">View, Text, Image (instead of div, p, img)</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">StyleSheet (CSS in JS)</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">FlatList (optimized lists)</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">React Navigation (Stack + Tab navigators)</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">Expo ImagePicker, Location, Notifications</span></div>
+<div class="learn-item"><span class="learn-num">6</span><span class="learn-text">AsyncStorage (local data)</span></div>
+<div class="learn-item"><span class="learn-num">7</span><span class="learn-text">Expo EAS Build (build real APK without Mac)</span></div>
+<div class="learn-item"><span class="learn-num">8</span><span class="learn-text">Publish to Google Play Store</span></div>
+<div style="margin-top:10px">
+<a href="https://www.youtube.com/watch?v=0-S5a0eXPoc" target="_blank" class="link-item"><span>▶</span><span class="link-text">React Native Full Course — freeCodeCamp (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://docs.expo.dev" target="_blank" class="link-item"><span>▶</span><span class="link-text">Expo Docs (Free)</span><span style="color:#444">↗</span></a>
+<a href="https://snack.expo.dev" target="_blank" class="link-item"><span>▶</span><span class="link-text">Expo Snack — Code React Native in Browser</span><span style="color:#444">↗</span></a>
+</div></div></div>
+</div></div>
+
+<div class="phase">
+<button class="phase-btn" onclick="togglePhase('p7',this)">
+<div class="phase-header"><div><span class="phase-icon">🚀</span><span class="phase-num">MONTH 10–12</span><div class="phase-title">Launch Your Startup</div></div><span class="arrow">▼</span></div>
+<div class="phase-sub">Turn your product into a real business</div>
+</button>
+<div id="p7" class="phase-body">
+<div class="why-box"><div class="why-label">WHY THIS MATTERS FOR YOUR STARTUP</div><div class="why-text">Building is only 30% of a startup. The other 70% is getting users, charging money, and growing. This phase makes it real.</div></div>
+<div class="milestone-box"><span style="font-size:18px">🏆</span><div><div class="milestone-label">PHASE MILESTONE</div><div class="milestone-text">10 real paying users OR 100 active free users. Real revenue or strong growth signal.</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t70',this)"><div class="topic-header"><div><span class="topic-icon">💳</span><span class="topic-name">Payments + Analytics</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t70" class="topic-body">
+<div class="simple-text">Stripe handles payments. Analytics shows what users do. These tools turn your project into a business that makes money.</div>
+<div class="flow-box"><div class="flow-text">User clicks Upgrade → Stripe checkout → Payment confirmed → User gets Pro access</div></div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">Stripe — accept payments online</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">Lemon Squeezy — easier Stripe alternative</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">PostHog — free analytics + feature flags</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">Resend — free email API</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">Sentry — free error monitoring</span></div>
+<div style="margin-top:10px">
+<a href="https://www.youtube.com/watch?v=1r-F3FIONl8" target="_blank" class="link-item"><span>▶</span><span class="link-text">Stripe for Beginners (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://posthog.com" target="_blank" class="link-item"><span>▶</span><span class="link-text">PostHog — Free Analytics</span><span style="color:#444">↗</span></a>
+</div></div></div>
+<div class="topic"><button class="topic-btn" onclick="toggleTopic('t71',this)"><div class="topic-header"><div><span class="topic-icon">💼</span><span class="topic-name">Startup Business Skills</span></div><span style="color:#444;font-size:12px">▼</span></div></button>
+<div id="t71" class="topic-body">
+<div class="simple-text">Code is only part of the startup game. Validate ideas, talk to users, write copy, understand money. These skills separate developers from founders.</div>
+<div class="learn-item"><span class="learn-num">1</span><span class="learn-text">The Mom Test — how to talk to users</span></div>
+<div class="learn-item"><span class="learn-num">2</span><span class="learn-text">Product-market fit — what it is</span></div>
+<div class="learn-item"><span class="learn-num">3</span><span class="learn-text">Landing page copywriting</span></div>
+<div class="learn-item"><span class="learn-num">4</span><span class="learn-text">How to launch on ProductHunt</span></div>
+<div class="learn-item"><span class="learn-num">5</span><span class="learn-text">Building in public on Twitter/X</span></div>
+<div class="learn-item"><span class="learn-num">6</span><span class="learn-text">YC application tips</span></div>
+<div class="learn-item"><span class="learn-num">7</span><span class="learn-text">CAC and LTV (basic startup metrics)</span></div>
+<div style="margin-top:10px">
+<a href="https://www.ycombinator.com/library" target="_blank" class="link-item"><span>▶</span><span class="link-text">YC Startup School — Free Courses</span><span style="color:#444">↗</span></a>
+<a href="https://paulgraham.com/articles.html" target="_blank" class="link-item"><span>▶</span><span class="link-text">Paul Graham Essays — Essential Reading</span><span style="color:#444">↗</span></a>
+<a href="https://www.indiehackers.com" target="_blank" class="link-item"><span>▶</span><span class="link-text">Indie Hackers — Real Founder Stories</span><span style="color:#444">↗</span></a>
+</div></div></div>
+</div></div>
+</div>
+<div id="schedule" class="content">
+<h2 style="font-size:18px;font-weight:900;margin-bottom:4px">📅 Your Daily Schedule</h2>
+<p style="font-size:12px;color:#666;margin-bottom:16px">3-4 hours/day — optimized for learning AND building</p>
+<div style="background:rgba(255,77,109,0.08);border:1px solid rgba(255,77,109,0.2);border-radius:14px;padding:16px;margin-bottom:16px">
+<p style="font-size:13px;font-weight:800;color:#FF4D6D;margin-bottom:12px">⏰ Ideal Daily Block</p>
+<div style="display:flex;gap:12px;margin-bottom:10px"><span style="background:rgba(255,77,109,0.2);color:#FF4D6D;border-radius:8px;padding:4px 8px;font-size:11px;font-weight:800;flex-shrink:0">1h</span><div><p style="font-size:12px;font-weight:700;color:#D8D8EE">📚 Learn</p><p style="font-size:11px;color:#666;margin-top:2px">Watch course or read docs on current phase topic</p></div></div>
+<div style="display:flex;gap:12px;margin-bottom:10px"><span style="background:rgba(255,77,109,0.2);color:#FF4D6D;border-radius:8px;padding:4px 8px;font-size:11px;font-weight:800;flex-shrink:0">1h</span><div><p style="font-size:12px;font-weight:700;color:#D8D8EE">🏗️ Build</p><p style="font-size:11px;color:#666;margin-top:2px">Code your startup project using what you just learned</p></div></div>
+<div style="display:flex;gap:12px;margin-bottom:10px"><span style="background:rgba(255,77,109,0.2);color:#FF4D6D;border-radius:8px;padding:4px 8px;font-size:11px;font-weight:800;flex-shrink:0">45m</span><div><p style="font-size:12px;font-weight:700;color:#D8D8EE">🔧 Practice</p><p style="font-size:11px;color:#666;margin-top:2px">Exercises and challenges on freeCodeCamp</p></div></div>
+<div style="display:flex;gap:12px"><span style="background:rgba(255,77,109,0.2);color:#FF4D6D;border-radius:8px;padding:4px 8px;font-size:11px;font-weight:800;flex-shrink:0">45m</span><div><p style="font-size:12px;font-weight:700;color:#D8D8EE">🌐 Absorb</p><p style="font-size:11px;color:#666;margin-top:2px">Indie Hackers, Reddit, YouTube — startup culture</p></div></div>
+</div>
+<p style="font-size:13px;font-weight:800;margin-bottom:12px">📆 12-Month Timeline</p>
+<div style="display:flex;gap:10px;margin-bottom:8px;align-items:center"><div style="width:32px;height:32px;border-radius:50%;background:#FF9F1C;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#000;flex-shrink:0">1</div><div style="flex:1;background:rgba(255,159,28,0.08);border:1px solid rgba(255,159,28,0.2);border-radius:10px;padding:10px 12px"><p style="font-size:10px;color:#FF9F1C;font-weight:700">Month 1–2</p><p style="font-size:13px;font-weight:700;color:#EEEEFF">HTML + CSS</p><p style="font-size:11px;color:#666">🎯 Live startup landing page</p></div></div>
+<div style="display:flex;gap:10px;margin-bottom:8px;align-items:center"><div style="width:32px;height:32px;border-radius:50%;background:#F7DC6F;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#000;flex-shrink:0">2</div><div style="flex:1;background:rgba(247,220,111,0.06);border:1px solid rgba(247,220,111,0.2);border-radius:10px;padding:10px 12px"><p style="font-size:10px;color:#F7DC6F;font-weight:700">Month 2–4</p><p style="font-size:13px;font-weight:700;color:#EEEEFF">JavaScript</p><p style="font-size:11px;color:#666">🎯 Interactive product prototype</p></div></div>
+<div style="display:flex;gap:10px;margin-bottom:8px;align-items:center"><div style="width:32px;height:32px;border-radius:50%;background:#61DAFB;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#000;flex-shrink:0">3</div><div style="flex:1;background:rgba(97,218,251,0.06);border:1px solid rgba(97,218,251,0.2);border-radius:10px;padding:10px 12px"><p style="font-size:10px;color:#61DAFB;font-weight:700">Month 4–6</p><p style="font-size:13px;font-weight:700;color:#EEEEFF">React + Tailwind</p><p style="font-size:11px;color:#666">🎯 Web App MVP deployed live</p></div></div>
+<div style="display:flex;gap:10px;margin-bottom:8px;align-items:center"><div style="width:32px;height:32px;border-radius:50%;background:#A8E6CF;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#000;flex-shrink:0">4</div><div style="flex:1;background:rgba(168,230,207,0.06);border:1px solid rgba(168,230,207,0.2);border-radius:10px;padding:10px 12px"><p style="font-size:10px;color:#A8E6CF;font-weight:700">Month 5–7</p><p style="font-size:13px;font-weight:700;color:#EEEEFF">Backend + Database</p><p style="font-size:11px;color:#666">🎯 Real user accounts and data</p></div></div>
+<div style="display:flex;gap:10px;margin-bottom:8px;align-items:center"><div style="width:32px;height:32px;border-radius:50%;background:#FF80AB;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#000;flex-shrink:0">5</div><div style="flex:1;background:rgba(255,128,171,0.06);border:1px solid rgba(255,128,171,0.2);border-radius:10px;padding:10px 12px"><p style="font-size:10px;color:#FF80AB;font-weight:700">Month 6–8</p><p style="font-size:13px;font-weight:700;color:#EEEEFF">UI/UX + Figma</p><p style="font-size:11px;color:#666">🎯 Professional app designs</p></div></div>
+<div style="display:flex;gap:10px;margin-bottom:8px;align-items:center"><div style="width:32px;height:32px;border-radius:50%;background:#C3A6FF;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#000;flex-shrink:0">6</div><div style="flex:1;background:rgba(195,166,255,0.06);border:1px solid rgba(195,166,255,0.2);border-radius:10px;padding:10px 12px"><p style="font-size:10px;color:#C3A6FF;font-weight:700">Month 8–10</p><p style="font-size:13px;font-weight:700;color:#EEEEFF">React Native</p><p style="font-size:11px;color:#666">🎯 Mobile app on your phone</p></div></div>
+<div style="display:flex;gap:10px;margin-bottom:8px;align-items:center"><div style="width:32px;height:32px;border-radius:50%;background:#FFD700;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#000;flex-shrink:0">7</div><div style="flex:1;background:rgba(255,215,0,0.06);border:1px solid rgba(255,215,0,0.2);border-radius:10px;padding:10px 12px"><p style="font-size:10px;color:#FFD700;font-weight:700">Month 10–12</p><p style="font-size:13px;font-weight:700;color:#EEEEFF">Launch + Grow</p><p style="font-size:11px;color:#666">🎯 10 paying users / first revenue</p></div></div>
+<p style="font-size:13px;font-weight:800;margin-top:16px;margin-bottom:12px">📱 Your Free Mobile Toolkit</p>
+<a href="https://replit.com" target="_blank" class="link-item"><span>💻</span><span class="link-text">Replit — Write & run code in browser</span><span style="color:#444">↗</span></a>
+<a href="https://getmimo.com" target="_blank" class="link-item"><span>📚</span><span class="link-text">Mimo — Learn coding on mobile</span><span style="color:#444">↗</span></a>
+<a href="https://github.com" target="_blank" class="link-item"><span>🐙</span><span class="link-text">GitHub — Save all your code</span><span style="color:#444">↗</span></a>
+<a href="https://www.netlify.com" target="_blank" class="link-item"><span>🌍</span><span class="link-text">Netlify — Deploy websites free</span><span style="color:#444">↗</span></a>
+<a href="https://expo.dev/client" target="_blank" class="link-item"><span>📱</span><span class="link-text">Expo Go — Test mobile app on phone</span><span style="color:#444">↗</span></a>
+<a href="https://www.figma.com" target="_blank" class="link-item"><span>🎨</span><span class="link-text">Figma — Design your startup UI</span><span style="color:#444">↗</span></a>
+<a href="https://hoppscotch.io" target="_blank" class="link-item"><span>🔌</span><span class="link-text">Hoppscotch — Test your APIs</span><span style="color:#444">↗</span></a>
+<a href="https://freecodecamp.org" target="_blank" class="link-item"><span>🆓</span><span class="link-text">freeCodeCamp — Best free curriculum</span><span style="color:#444">↗</span></a>
+</div>
+
+<div id="mindset" class="content">
+<h2 style="font-size:18px;font-weight:900;margin-bottom:4px">🧠 Founder Mindset</h2>
+<p style="font-size:12px;color:#666;margin-bottom:20px">What separates builders from dreamers</p>
+<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px;margin-bottom:10px;display:flex;gap:14px"><span style="font-size:26px;flex-shrink:0">⚡</span><p style="font-size:13px;color:#B0B0C8;line-height:1.7">You don't need to know everything. You need to know ENOUGH to build your idea and figure out the rest as you go.</p></div>
+<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px;margin-bottom:10px;display:flex;gap:14px"><span style="font-size:26px;flex-shrink:0">🎯</span><p style="font-size:13px;color:#B0B0C8;line-height:1.7">Build while you learn. Every phase ends with something REAL you made. Projects teach you 10x more than watching videos.</p></div>
+<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px;margin-bottom:10px;display:flex;gap:14px"><span style="font-size:26px;flex-shrink:0">🔥</span><p style="font-size:13px;color:#B0B0C8;line-height:1.7">3-4 hours/day = 1,000+ hours in a year. That's more than enough to go from zero to launching a real startup.</p></div>
+<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px;margin-bottom:10px;display:flex;gap:14px"><span style="font-size:26px;flex-shrink:0">🚫</span><p style="font-size:13px;color:#B0B0C8;line-height:1.7">Don't wait till you're 'ready'. Ship ugly, learn fast, improve always. Every successful startup launched with an embarrassing first version.</p></div>
+<div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px;margin-bottom:20px;display:flex;gap:14px"><span style="font-size:26px;flex-shrink:0">💡</span><p style="font-size:13px;color:#B0B0C8;line-height:1.7">Your first startup idea will probably change. The coding skills you build won't. Learn the fundamentals deeply.</p></div>
+<p style="font-size:14px;font-weight:800;color:#FF4D6D;margin-bottom:12px">📖 Essential Free Reading</p>
+<a href="https://paulgraham.com/articles.html" target="_blank" class="link-item"><span>🔗</span><span class="link-text">Paul Graham Essays — Bible for Startup Founders</span><span style="color:#444">↗</span></a>
+<a href="https://www.ycombinator.com/library" target="_blank" class="link-item"><span>🔗</span><span class="link-text">YC Startup School — Free Courses by Y Combinator</span><span style="color:#444">↗</span></a>
+<a href="https://www.youtube.com/watch?v=CBYhVcO4WgI" target="_blank" class="link-item"><span>🔗</span><span class="link-text">How to Start a Startup — Sam Altman (YouTube)</span><span style="color:#444">↗</span></a>
+<a href="https://www.indiehackers.com" target="_blank" class="link-item"><span>🔗</span><span class="link-text">Indie Hackers — Real Founders Sharing Revenue</span><span style="color:#444">↗</span></a>
+</div>
+
+<div class="footer"><p>All resources are 100% free · Mobile only · Built for founders 🔥</p></div>
+
+<script>
+function showTab(id,btn){
+  document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function togglePhase(id,btn){
+  var body=document.getElementById(id);
+  var isOpen=body.classList.contains('open');
+  document.querySelectorAll('.phase-body').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.phase-btn').forEach(b=>b.classList.remove('open'));
+  if(!isOpen){body.classList.add('open');btn.classList.add('open');}
+}
+function toggleTopic(id,btn){
+  var body=document.getElementById(id);
+  var isOpen=body.classList.contains('open');
+  document.querySelectorAll('.topic-body').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.topic-btn').forEach(b=>b.classList.remove('open'));
+  if(!isOpen){body.classList.add('open');btn.classList.add('open');}
+}
+</script>
+</body>
+</html>
